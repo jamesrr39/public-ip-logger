@@ -7,6 +7,7 @@ from BeautifulSoup import BeautifulSoup
 from gi.repository import Notify
 import time
 from datetime import datetime
+import os
 
 def get_ip():
     req = urllib2.Request("http://checkip.dyndns.org/")
@@ -21,7 +22,8 @@ def notify(ip_address):
     notification.show()
 
 def log(ip_address):
-    file = open('logs/ip_address', 'a+')
+    log_file_name = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'logs', 'ip_address')
+    file = open(log_file_name, 'a+')
     timestamp = int(time.time())
     file.write("{0}|{1}|{2}\n".format(datetime.fromtimestamp(timestamp), str(timestamp), ip_address))
 
