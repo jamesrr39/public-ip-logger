@@ -23,13 +23,17 @@ def notify(ip_address, ssid):
     notification.show()
 
 def log(ip_address, ssid):
-    log_file_name = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'logs', 'ip_address')
+    log_file_name = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'logs', 'ip_address.log')
     file = open(log_file_name, 'a+')
     timestamp = int(time.time())
     file.write("{0}|{1}|{2}|{3}\n".format(datetime.fromtimestamp(timestamp), str(timestamp), ip_address, ssid))
 
 def get_ssid():
-    return subprocess.check_output(["iwgetid", "-r"]).replace("\n", "");
+    try:
+        return subprocess.check_output(["iwgetid", "-r"]).replace("\n", "")
+    except subprocess.CalledProcessError, e:
+        return None
+
 
 ip_address = get_ip()
 ssid = get_ssid()
