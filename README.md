@@ -8,10 +8,10 @@ MIT, and it uses the dyndns checkip tool, so abide by [their policies](https://h
 
 ## Install
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 ## Run
 
-python log-ip.py
+    python log-ip.py
 
 
